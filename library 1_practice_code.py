@@ -20,3 +20,19 @@ start_time = time.time()
 np_result = np_array + 5
 end_time = time.time()
 print("Numpy Array Time:", end_time - start_time)
+
+arr = np.array([1,2,3])
+print (arr)
+
+print(np.zeros((2,3)))
+print(np.ones((2,3)))
+print(np.full((2,3),7))
+
+print(np.arange(0,10,2))
+print(np.linspace(0,1,5))
+
+print(np.eye(3))
+print(np.diag([1,2,3]))
+np.array([1,2,3],dtype = float)
+arr = np.array([1.5,2.7,3.9])
+print(arr.astype(int))
