@@ -57,3 +57,23 @@ print(arr[0])
 copy_arr = arr[1].copy()
 copy_arr[1] = 555
 print(arr[1])
+
+# numpy random numbers, Reproducebility & Performance Tips
+
+rng = np.random.default_rng()
+flips = rng.integers(0,2,size = 100000)
+prob_heads = np.mean(flips)
+print("Estimated Probability of heads: ",prob_heads)
+
+import time 
+start = time.time()
+squares = [i**2 for i in range (1000000)]
+end = time.time()
+print("loop time:",end - start)
+
+# Numpy vectorized
+start = time.time()
+arr = np.arange(1000000)
+squares_np = arr**2
+end = time.time()
+print("Vectorized time: ",end - start)
