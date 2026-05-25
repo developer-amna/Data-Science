@@ -144,3 +144,73 @@ min     1950.000000     0.000000     0.000000   34900.000000
 max     2010.000000  1526.000000  6110.000000  755000.000000  
 """ 
 
+# Pandas Indexing & Selection-Loc & iloc
+
+data = {
+    'Name' : ['Alice','Bob','Charlie'],
+    'Age' : [25,30,35],
+    'City' : ['New York','San Francisco','Los Angeles'],
+    'Salary' : [50000,60000,70000]
+}
+df = pd.DataFrame(data)
+print("Original DataFrame:\n",df)
+
+""" 
+Output
+Original DataFrame:
+       Name  Age           City  Salary
+0    Alice   25       New York   50000
+1      Bob   30  San Francisco   60000
+2  Charlie   35    Los Angeles   70000
+"""
+
+# Label Based Selection
+
+subset_loc = df.loc[1:3,['Name','Salary']]
+print("Subset with loc:\n",subset_loc)
+
+"""
+Output
+
+Subset with loc:
+       Name  Salary
+1      Bob   60000
+2  Charlie   70000
+"""
+
+# Integer Based Selection
+
+subset_iloc = df.iloc[0:2,1:3]
+print("Subset with iloc:\n",subset_iloc)
+
+"""
+Output
+
+Subset with iloc:
+    Age           City
+0   25       New York
+1   30  San Francisco
+"""
+
+# Boolean Filtering
+high_salary = df[df['Salary'] > 55000]
+print("Employees with Salary > 55000:\n",high_salary)
+
+"""
+Output
+
+Employees with Salary > 55000:
+       Name  Age           City  Salary
+1      Bob   30  San Francisco   60000
+2  Charlie   35    Los Angeles   70000 
+"""
+# Safe Assignment using.loc
+df.loc[df['Age']<30,'Salary']=45000
+print("Low Age Salary Change:\n",df.loc[df['Age']<30,'Salary'])
+
+"""
+Output
+Low Age Salary Change:
+ 0    45000
+Name: Salary, dtype: int64
+"""
