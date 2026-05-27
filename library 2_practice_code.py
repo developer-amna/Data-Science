@@ -214,3 +214,48 @@ Low Age Salary Change:
  0    45000
 Name: Salary, dtype: int64
 """
+
+# Import and Export CSV,JSON & Excel
+
+import pandas as pd
+
+# CSV file load karna
+clean_df = pd.read_csv(
+    "retail_sales.csv",
+    parse_dates=["Date"],   # Date column ko datetime me convert karega
+    dtype={
+        "Category": "category",
+        "Region": "category"
+    }
+)
+
+# Subset (pehle 10 rows)
+subset = clean_df.head(10)
+
+# Subset ko JSON file me export karna
+subset.to_json("subset_sales.json", orient="records", date_format="iso")
+
+print("Files exported!")
+
+# Subset ki info print karna
+subset.info()
+
+"""
+
+Output
+
+Files exported!
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 10 entries, 0 to 9
+Data columns (total 6 columns):
+ #   Column    Non-Null Count  Dtype         
+---  ------    --------------  -----         
+ 0   Date      10 non-null     datetime64[ns]
+ 1   Category  10 non-null     category      
+ 2   Sales     10 non-null     float64       
+ 3   Quantity  10 non-null     float64       
+ 4   Profit    10 non-null     float64       
+ 5   Region    10 non-null     category      
+dtypes: category(2), datetime64[ns](1), float64(3)
+memory usage: 1.0 KB
+"""
